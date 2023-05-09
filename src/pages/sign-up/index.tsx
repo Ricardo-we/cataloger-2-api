@@ -27,8 +27,6 @@ const SignUpView: FC<SignUpViewProps> = () => {
 
 	const onSignUp = async (userData: User) => {
 		const response = await userService.signUp(userData);
-		console.log(response);
-		// dispatch(changeUser(response as Partial<User>));
 		if([200,204].includes(response?.status)){
 			toast.success(language.getTranslation("module.signup.signUpSuccessfully"))
 			router.push("/sign-up/confirm-code")
