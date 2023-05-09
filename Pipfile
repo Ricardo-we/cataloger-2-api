@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "*"
+django-cryptography = "*"
+djangorestframework-simplejwt = "*"
+pyjwt = "*"
+django-apscheduler = "*"
+django = "*"
+python-dotenv = "*"
+django-cors-headers = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
