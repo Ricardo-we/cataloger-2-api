@@ -1,20 +1,13 @@
-from django.shortcuts import render
-from rest_framework import viewsets, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.request import Request
-from .models import User
 from .serializers import UserSerializer, LoginUserSerializer, CreateUserSerializer
 from .services.UsersService import UsersService
 from utils.generic.error_response import error_response
 from utils.classes.TranslationsBuilder import get_translation_dict_by_headers
 from utils.exceptions.BaseHttpException import BaseHttpException
-from rest_framework.views import APIView
-from utils.auth.use_user import use_user
 from shared.services.EmailService import EmailService
-from django.db import IntegrityError
-from django.db.models import UniqueConstraint
 
 users_service = UsersService()
 email_service = EmailService()

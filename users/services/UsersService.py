@@ -1,12 +1,12 @@
 from ..serializers import UserSerializer
-from ..models import User, ConfirmationCode
+from ..models import User, ConfirmationCode, Profile
 from utils.generic.crypt import decrypt, encrypt
 from utils.exceptions.InvalidUserException import InvalidUserException, UserNotExistsException
 from utils.exceptions.DbIntegrityException import DbIntegrityException
 from datetime import datetime
-from django.forms.models import model_to_dict
 from django.db.models import Q
 from utils.generic.crypt import generate_random_number_code
+from django.conf import settings
 
 class UserServiceBase:
     def create_user(user={}): pass
@@ -38,11 +38,15 @@ class UsersService(UserServiceBase):
     def create_user(self, user={}):
         user_exists = self.user_exists(user)        
         if user_exists: return
+        # base_profile = Profile.objects.filter(profile_type=settings.BASE_PROFILE_NAME)
+        base_profile = Profile.objects.get_or_create(profile_type=settings.BASE_PROFILE_NAME.get("profile_type"), price=settings.BASE_PROFILE_NAME.get("price"))
+        base_profile = base_profile[0]
         new_user = User.objects.create(
             username=user.get("username"),
             password=encrypt(user.get("password")).decode("utf8"),
             email=user.get("email"),
-            full_name=user.get("full_name")
+            full_name=user.get("full_name"),
+            profile=base_profile
         )
         confirmation_code = self.create_confirmation_code(new_user)
         return confirmation_code, new_user

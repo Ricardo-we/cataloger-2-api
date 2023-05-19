@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "corsheaders",
-    'users'
+    "users",
+    "catalogs"
 ]
 
 REST_FRAMEWORK = {
@@ -162,3 +163,8 @@ EMAIL_DEFAULTS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+BASE_PROFILE_NAME = {
+    "profile_type": "base",
+    "price": 0.0
+}
