@@ -1,15 +1,11 @@
+import { Typography, TypographyProps } from "@mui/material";
 import { FC, HTMLProps } from "react";
 
-interface TextProps extends HTMLProps<HTMLParagraphElement> {
-    fSize?: "xs" | "lg" | "base";
-}
+interface TextProps extends TypographyProps {}
 
-const Text: FC<TextProps> = ({fSize="base", ...props}) => {
+const Text: FC<TextProps> = ({...props}) => {
     return ( 
-        <p 
-            className={props.className + " " + `text-${fSize}`}
-            {...props}
-        />
+        <Typography {...props}/>
     );
 }
 

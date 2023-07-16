@@ -1,24 +1,93 @@
-import { DetailedHTMLProps, FC, InputHTMLAttributes, HTMLProps } from "react";
+import { CSSProperties, FC } from "react";
+import {
+	InputAdornment,
+	InputProps,
+	StandardTextFieldProps,
+	TextField,
+	TextFieldProps,
+} from "@mui/material";
+import { Children } from "@/types/Children";
 
-interface InputProps extends HTMLProps<HTMLInputElement> {
-    label?: string;
-    error?: string | string[];
+
+// import { getISODate } from "../../utils/generic/date.utils";
+
+interface BInputProps extends StandardTextFieldProps {
+	error?: any;
+	name?: string;
+	value?: any;
+	// variant?: "filled" | "standard" | "outlined";
+	onChange?: (data: any) => any;
+	style?: CSSProperties;
+	type?: string;
+	label?: string;
+	rows?: number;
+	multiline?: boolean;
+	maxRows?: number;
+	disabled?: boolean;
+	autoFocus?: boolean;
+	inputColors?: string;
+	rightAdorment?: Children;
+	leftAdorment?: Children;
+	max?: number;
+	min?: number;
+	rightOutAdorment?: string;
+	leftOutAdorment?: string;
 }
 
-const Input: FC<InputProps> = ({ label,error, ...props }) => {
-    return (
-        <div className="mb-3">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-                {label}
-            </label>
-            <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder={label}
-                {...props}
-            />
-            <label className="text-error">{error}</label>
-        </div>
-    );
-}
+const BInput: FC<BInputProps> = ({
+	leftAdorment,
+	rightAdorment,
+	error = "",
+	name = "",
+	onChange,
+	value,
+	variant = "outlined",
+	disabled = false,
+	inputColors,
+	max,
+	min,
+	rightOutAdorment,
+	leftOutAdorment,
+	...props
+}) => {
+	const hasOutAdorments = !!leftOutAdorment || !!rightOutAdorment;
+	const hasError = error?.length > 0;
 
-export default Input;
+	return <TextField
+		{...props}
+		helperText={error}
+		variant="standard"
+		error={hasError}
+		name={name}
+		onChange={onChange}
+		value={value}
+		style={{
+			width: "100%",
+			color: inputColors,
+			maxWidth: props.multiline ? "100%" : undefined,
+			...props.style,
+			height: hasOutAdorments ? "auto" : props?.style?.height,
+			// margin: 0,
+		}}
+		InputLabelProps={{
+			shrink: !!value || props.autoFocus,
+			style: {
+				...props.style,
+				color: inputColors,
+			},
+			// ...props.InputLabelProps
+		}}
+		inputProps={{
+			style: { color: inputColors },
+			max,
+			min
+		}}
+		InputProps={{
+			endAdornment: rightAdorment,
+			startAdornment: leftAdorment,
+		}}
+		disabled={disabled}
+	/>;
+};
+
+export default BInput;

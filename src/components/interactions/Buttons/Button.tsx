@@ -1,9 +1,10 @@
 import { variantEquivalents } from "@/styles/variantEquivalents";
 import { Variants } from "@/types/Variants";
 import { ButtonHTMLAttributes, FC, HTMLProps } from "react";
+import {Button as MuiButton, ButtonProps as MuiButtonProps} from "@mui/material";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: Variants;
+interface ButtonProps extends MuiButtonProps {
+    // variant?: Variants;
 }
 
 const buttonVariants = {
@@ -14,14 +15,15 @@ const buttonVariants = {
     success: `bg-success hover:success text-white font-bold py-2 px-4 rounded`,
 }
 
-const Button: FC<ButtonProps> = ({ variant = "primary",type="button", ...props }) => {
+const Button: FC<ButtonProps> = ({ variant = "contained",type="button", ...props }) => {
 
     return (
-        <button
-            {...props}
-            type={type}
-            className={buttonVariants[variant] + " " + props.className}
-        />
+        <MuiButton variant={variant} {...props}/>
+        // <button
+        //     {...props}
+        //     type={type}
+        //     className={buttonVariants[variant] + " " + props.className}
+        // />
     );
 }
 
