@@ -26,7 +26,6 @@ export default class UsersService extends BaseRequest {
 		const response = await this.post(userAdaptedData, {
 			routeParams: "/sign-up"
 		});
-		console.log(response)
 		return response;
 	}
 

@@ -8,7 +8,7 @@ const useUserAutoRedirect = () => {
     const router = useRouter();
 
     useEffect(() => {
-		if(user !== undefined && user?.token)
+		if(user !== undefined && user?.token && (user?.isActive || user?.is_active))
 			router.push("/home");
 	}, [user, router])
 

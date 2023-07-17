@@ -7,9 +7,12 @@ import Button from "@/components/interactions/Buttons/Button";
 import { useFormik } from "formik";
 import { BaseForm } from "@/types/BaseForm";
 import { loginSchema } from "../helpers/schemas/loginSchema";
-import Link from "next/link";
 import FlexBox from "@/components/FlexBox";
 import Image from "next/image";
+import BLink from "@/components/interactions/BLink";
+import { Box } from "@mui/material";
+import styles from "@/styles/responsive-form.module.css";
+import { useWindowSize } from "@/hooks/useWindow";
 
 interface LoginFormProps extends BaseForm {}
 
@@ -19,7 +22,8 @@ const LoginForm: FC<LoginFormProps> = ({
 	validationSchema,
 }) => {
 	const language = useSafeFixedLanguage();
-
+	const windowSize = useWindowSize();
+	
 	const formik = useFormik({
 		initialValues,
 		onSubmit,
@@ -29,37 +33,47 @@ const LoginForm: FC<LoginFormProps> = ({
 	return (
 		<FlexBox
 			direction="row"
-			wrap="nowrap"
+			wrap="wrap"
 			align="flex-start"
 			justify="space-between"
-			style={{maxHeight: "100vh", height: "100vh"}}
+			sx={{ maxHeight: "100vh", height: "100vh" }}
 		>
-			<div style={{height: "100%", width: "45%"}}>
+			<Box
+				sx={{
+					display: { lg: "inline-block", md: "inline-block", sm: "none" },
+					height: "100%",
+					width: "45%",
+				}}
+			>
 				<Image
 					src={"/assets/images/login_left_side.jpg"}
 					alt=""
 					width={600}
 					height={900}
 					// fill
-					style={{ objectFit: "cover", width: "100%", height: "100%" }}
+					style={{
+						objectFit: "cover",
+						width: "100%",
+						height: "100%",
+					}}
 				/>
-			</div>
+			</Box>
 
 			<Form
 				preventDef
 				onSubmit={formik.handleSubmit}
 				style={{
-					width: "50%",
-					padding: 20,
+					width: windowSize?.innerWidth < 1200 ? "100%" :  "45%",
+					marginInline: "60px",
+					paddingInline: "40px",
+					marginTop: "40px",
 					display: "flex",
 					alignItems: "flex-start",
 					justifyContent: "space-evenly",
 					flexDirection: "column",
-					gap: "30px"
-					// minWidth: "500px",
-					// maxHeight: "370px",
-					// padding: "80px",
+					gap: "30px",
 				}}
+                className={styles.responsiveForm}
 			>
 				<Image
 					src={"/assets/images/cataloger.png"}
@@ -67,7 +81,7 @@ const LoginForm: FC<LoginFormProps> = ({
 					width={200}
 					height={200}
 				/>
-				<Title variant="h6">
+				<Title variant="h5">
 					{language.getTranslation("generic.logIn")}
 				</Title>
 				<Input
@@ -98,9 +112,9 @@ const LoginForm: FC<LoginFormProps> = ({
 					{language.getTranslation("generic.logIn")}
 				</Button>
 
-				<Link href="/sign-up" className="text-blue-400 py-3">
+				<BLink href="/sign-up">
 					{language.getTranslation("module.login.signUpLink")}
-				</Link>
+				</BLink>
 			</Form>
 		</FlexBox>
 	);

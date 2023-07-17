@@ -1,0 +1,9 @@
+.responsiveForm {
+    
+}
+
+@media only screen and (max-width: 1000px) {
+    .responsiveForm {
+        width: 100%;
+    }
+}

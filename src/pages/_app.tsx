@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@/redux/app.store";
 import "react-toastify/dist/ReactToastify.css";
+import BToaster from "@/components/display-components/Toast/BToaster";
 
 // const queryClient = new QueryClient({
 // 	defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } },
@@ -13,6 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		// <QueryClientProvider client={queryClient}>
 
 		<ReduxProvider store={store}>
+			<BToaster
+				position="top-right"
+			/>
 			<Component {...pageProps} />
 		</ReduxProvider>
 		// </QueryClientProvider>

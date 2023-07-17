@@ -28,16 +28,13 @@ export default function Home() {
 
 	return (
 		<>
-			<BToaster />
-			<main className={`flex items-center justify-center h-screen`}>
-				<LoginForm
-					onSubmit={onLogin}
-					initialValues={{
-						email: "",
-						password: "",
-					}}
-				/>
-			</main>
+			<LoginForm
+				onSubmit={onLogin}
+				initialValues={{
+					email: "",
+					password: "",
+				}}
+			/>
 		</>
 	);
 }

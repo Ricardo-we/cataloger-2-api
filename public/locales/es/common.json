@@ -34,7 +34,8 @@
 		"view-tasks": "Ver Actividades",
 		"next": "Siguiente",
 		"back": "Volver",
-		"convert": "Convertir"
+		"convert": "Convertir",
+		"requestNewCode": "Pedir nuevo código"
 	},
 	"generic": {
 		"submit": "Subir",
@@ -169,7 +170,8 @@
 			"loginLink": "¿Ya tienes una cuenta? ¡Inicia Sesión!"
 		},
 		"confirm-code": {
-			"description": "Hemos enviado un código de confirmación a tu correo"
+			"description": "Hemos enviado un código de confirmación a tu correo, hacemos esto para comprobar que el correo te pertenece",
+			"newCodeRequestedSuccessfully": "El nuevo código de confirmación ha sido enviado!"
 		}
 	},
 	"errors": {

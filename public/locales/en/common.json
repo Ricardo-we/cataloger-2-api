@@ -34,7 +34,8 @@
 		"view-tasks": "View Tasks",
 		"next": "Next",
 		"back": "Back",
-		"convert": "Convert"
+		"convert": "Convert",
+		"requestNewCode": "Request new code"
 	},
 	"generic": {
 		"submit": "Submit",
@@ -195,7 +196,8 @@
 			"loginLink": "Already have an account? Login Here!"
 		},
 		"confirm-code": {
-			"description": "We have sent a confirmation code to your email" 
+			"description": "We have sent a confirmation code to your email, to verificate that the email you used is yours",
+			"newCodeRequestedSuccessfully": "New confirmation code sended!"
 		}
 	},
 	"errors": {

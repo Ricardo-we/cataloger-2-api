@@ -21,10 +21,13 @@ const ConfirmCodeView: FC<ConfirmCodeViewProps> = () => {
     const onConfirmCode = async ({ code }: { code: string }) => {
         const response = await usersService.confirmUserCode(code);
         const createdUser = response?.data;
+
         if ([204, 200].includes(response?.status)) {
             toast.success(language.getTranslation("module.signup.signUpSuccessfully"))
             dispatch(changeUser({...user, ...createdUser}))
             router.push("/sign-up/confirm-code")
+        } else {
+            toast.error(response.message, );
         }
 
         return response;
@@ -32,7 +35,7 @@ const ConfirmCodeView: FC<ConfirmCodeViewProps> = () => {
 
     return (
         <>
-            <BToaster />
+            {/* <BToaster /> */}
             <main
                 className={`flex items-center justify-center h-screen`}
             >
