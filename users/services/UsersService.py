@@ -7,6 +7,7 @@ from datetime import datetime
 from django.db.models import Q
 from utils.generic.crypt import generate_random_number_code
 from django.conf import settings
+from utils.exceptions.InvalidConfirmationCode import InvalidConfirmCodeException
 
 class UserServiceBase:
     def create_user(user={}): pass
@@ -41,18 +42,21 @@ class UsersService(UserServiceBase):
         # base_profile = Profile.objects.filter(profile_type=settings.BASE_PROFILE_NAME)
         base_profile = Profile.objects.get_or_create(profile_type=settings.BASE_PROFILE_NAME.get("profile_type"), price=settings.BASE_PROFILE_NAME.get("price"))
         base_profile = base_profile[0]
-        new_user = User.objects.create(
+        new_user = User(
             username=user.get("username"),
             password=encrypt(user.get("password")).decode("utf8"),
             email=user.get("email"),
             full_name=user.get("full_name"),
             profile=base_profile
         )
+        new_user.save()
         confirmation_code = self.create_confirmation_code(new_user)
         return confirmation_code, new_user
 
     def confirm_user(self, confirmation_code: str):
         code = ConfirmationCode.objects.filter(code=confirmation_code, expiration__gte=datetime.now()).first()
+        if not code: 
+            raise InvalidConfirmCodeException()
         user = code.user
         user.is_active = True
         user.save()
@@ -78,3 +82,14 @@ class UsersService(UserServiceBase):
             if not user.is_active: 
                 user.delete()
             code.delete()
+
+    def request_new_code(self, user_id: int):
+        old_confirm_code =  ConfirmationCode.objects.filter(user_id=user_id).first()
+        # user = User.objects.filter(user_id=user_id).first()
+        if not old_confirm_code or not old_confirm_code.user:
+            raise UserNotExistsException()
+        user = old_confirm_code.user
+        old_confirm_code.delete()
+        new_code = self.create_confirmation_code(user)
+        return new_code, user
+

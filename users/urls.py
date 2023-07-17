@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework import routers
-from .views import  login, sign_up,confirm_code
+from .views import  login, sign_up,confirm_code,request_new_code
 
 # router = routers.DefaultRouter()
 # router.register("users/", UsersViewset, "users")
@@ -11,5 +11,6 @@ urlpatterns = [
     path("users/login", login,),
     path("users/sign-up", sign_up,),
     path("users/confirm-user", confirm_code,),
+    path("users/new-code/<int:user_id>", request_new_code,),
     # path("users/me", get_users)
 ]

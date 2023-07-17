@@ -20,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta: 
         model = User
-        fields = ["id", "username", "email", "token", "full_name", "profile", "created_at"]
+        fields = ["id", "username", "email", "token", "full_name", "profile", "created_at", "is_active"]
     
 class LoginUserSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)

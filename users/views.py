@@ -46,7 +46,7 @@ def sign_up(request: Request):
             receivers=[user.email]
         )
 
-        return Response({ "success": True }, 204)
+        return Response(UserSerializer(user).data, 201)
     except BaseHttpException as exception:
         return error_response(exception.get_message(request), exception.status)
     except Exception as err:
@@ -62,6 +62,21 @@ def confirm_code(request: Request):
         authenticated_user = users_service.confirm_user(code)
 
         return Response(UserSerializer(authenticated_user).data, 200)
+    except BaseHttpException as exception:
+        return error_response(exception.get_message(request), exception.status)
+
+@csrf_exempt
+@api_view(["GET"])
+def request_new_code(request: Request, user_id):
+    try:
+        language = get_translation_dict_by_headers(request)
+        new_code, user = users_service.request_new_code(user_id)
+        
+        email_service.send(
+            body=language.get("generic").get("email-message").build()(new_code.code), 
+            receivers=[user.email]
+        )
+        return Response("", 204)
     except BaseHttpException as exception:
         return error_response(exception.get_message(request), exception.status)
 

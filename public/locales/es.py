@@ -9,7 +9,8 @@ translations = {
         "InvalidPassword": "Contraseña Inválida",
         "UserNotExists": "El usuario no existe",
         "IntegrityError": "Este dato ya existe",
-        "DbIntegrityException": lambda field: f"El {field} ya existe" 
+        "DbIntegrityException": lambda field: f"El {field} ya existe" ,
+        "InvalidConfirmCode": "Código de confirmación inválido",
     },
     "auth": {
         "TokenNotExists": "El usuario actual no tiene token",
