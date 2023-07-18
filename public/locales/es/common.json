@@ -172,6 +172,9 @@
 		"confirm-code": {
 			"description": "Hemos enviado un código de confirmación a tu correo, hacemos esto para comprobar que el correo te pertenece",
 			"newCodeRequestedSuccessfully": "El nuevo código de confirmación ha sido enviado!"
+		},
+		"catalogs": {
+			"catalogsOf": "Catalogos de "
 		}
 	},
 	"errors": {

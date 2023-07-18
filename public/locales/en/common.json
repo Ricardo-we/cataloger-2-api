@@ -198,6 +198,9 @@
 		"confirm-code": {
 			"description": "We have sent a confirmation code to your email, to verificate that the email you used is yours",
 			"newCodeRequestedSuccessfully": "New confirmation code sended!"
+		},
+		"catalogs": {
+			"catalogsOf": "Catalogs of "
 		}
 	},
 	"errors": {

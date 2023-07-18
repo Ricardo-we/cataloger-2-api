@@ -25,7 +25,7 @@ const ConfirmCodeView: FC<ConfirmCodeViewProps> = () => {
         if ([204, 200].includes(response?.status)) {
             toast.success(language.getTranslation("module.signup.signUpSuccessfully"))
             dispatch(changeUser({...user, ...createdUser}))
-            router.push("/sign-up/confirm-code")
+            router.push("/home")
         } else {
             toast.error(response.message, );
         }

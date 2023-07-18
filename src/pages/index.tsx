@@ -18,12 +18,17 @@ export default function Home() {
 	const user = useUserAutoRedirect();
 
 	const onLogin = async (userData: { email: string; password: string }) => {
-		const response = await userService.login(userData);
-		dispatch(changeUser(response as Partial<User>));
+		const userRes = await userService.login(userData);
+		dispatch(changeUser(userRes as Partial<User>));
 		toast.success(
 			language.getTranslation("module.login.loggedInSuccessfully")
 		);
-		return response;
+
+		if(userRes.isActive){
+			router.push("/home")
+		}
+
+		return userRes;
 	};
 
 	return (
