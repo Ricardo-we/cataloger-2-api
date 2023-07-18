@@ -5,10 +5,14 @@ export function usePopover(){
     const [anchorElement, setAnchorElement] = useState<any>(null);
 
     return {
-        closePopover: () => setActive(false),
+        closePopover: () => setTimeout(() => setActive(false),10),
         openPopover: (e?: any) => {
             if(e && e.currentTarget) setAnchorElement(e.currentTarget);
             setActive(true);
+        },
+        togglePopover: (e?: any) => {
+            if(e && e.currentTarget) setAnchorElement(e.currentTarget);
+            setActive(prev => !prev);
         },
         active,
         anchorElement,

@@ -1,6 +1,6 @@
 {
 	"general": {
-		"appName": "Link2Goal",
+		"appName": "Cataloger",
 		"checkDetails": "Go to ",
 		"routes": {
 			"sections": {
@@ -38,6 +38,7 @@
 		"requestNewCode": "Request new code"
 	},
 	"generic": {
+		"home": "Home",
 		"submit": "Submit",
 		"logIn": "Log in",
 		"logout": "Log out",
@@ -92,7 +93,9 @@
 		"yes": "Yes",
 		"no": "No",
 		"signUp": "Sign Up",
-		"confirmCode": "Confirmation Code"
+		"confirmCode": "Confirmation Code",
+		"onlineCatalogs": "Online Catalogs",
+		"currentUser": "Current user"
 	},
 	"selectors": {
 		"COR": "Corporative",

@@ -1,6 +1,6 @@
 {
 	"general": {
-		"appName": "Link2Goal",
+		"appName": "Cataloger",
 		"checkDetails": "Ir a ",
 		"routes": {
 			"sections": {
@@ -38,6 +38,7 @@
 		"requestNewCode": "Pedir nuevo código"
 	},
 	"generic": {
+		"home": "Inicio",
 		"submit": "Subir",
 		"logIn": "Iniciar sesión",
 		"logout": "Cerrar sesión",
@@ -91,7 +92,9 @@
 		"yes": "Sí",
 		"no": "No",
 		"signUp": "Registrate",
-		"confirmCode": "Código de Confirmación"
+		"confirmCode": "Código de Confirmación",
+		"onlineCatalogs": "Catálogos online",
+		"currentUser": "Usuario actual"
 	},
 	"fields": {
 		"search": "Buscar",

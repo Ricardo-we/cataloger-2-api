@@ -8,7 +8,7 @@ interface AppIconProps {
 const AppIcon: FC<AppIconProps> = ({ size=90 }) => {
 	return (
 		<Image
-			src={"/assets/images/cataloger.png"}
+			src={"/assets/images/cataloger-transparent.png"}
 			alt=""
 			width={size}
 			height={size}

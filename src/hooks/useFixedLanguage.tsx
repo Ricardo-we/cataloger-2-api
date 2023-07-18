@@ -54,11 +54,14 @@ export default function useFixedLanguage(
 export function useSafeFixedLanguage(
 	langName?: string,
 	langNamespace: string = "common",
-): { getTranslation: (accessKey: string) => any } {
+): { getTranslation: (accessKey: string) => any, t: (accessKey: string)=>any  } {
 	const fixedLanguage = useFixedLanguage(langName, langNamespace);
+	const getTranslation= (accessKey: string) =>
+	objectFindNestedKey(fixedLanguage, accessKey);
+
 	return {
-		getTranslation: (accessKey: string) =>
-			objectFindNestedKey(fixedLanguage, accessKey),
+		getTranslation,
+		t: getTranslation
 		// isLoading,
 	};
 }
