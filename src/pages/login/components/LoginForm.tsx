@@ -33,7 +33,7 @@ const LoginForm: FC<LoginFormProps> = ({
 	return (
 		<FlexBox
 			direction="row"
-			wrap="wrap"
+			wrap="nowrap"
 			align="flex-start"
 			justify="space-between"
 			sx={{ maxHeight: "100vh", height: "100vh" }}

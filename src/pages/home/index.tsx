@@ -6,7 +6,6 @@ interface HomeViewProps {}
 const HomeView: FC<HomeViewProps> = () => {
     return ( 
         <main>
-            <NavBar/>
             <Text variant="subtitle1">{}</Text>
         </main>
     );

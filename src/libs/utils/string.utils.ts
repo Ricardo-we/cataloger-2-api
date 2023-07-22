@@ -71,3 +71,13 @@ export function getSuffixPrefixFormatter(
 export function formatForSqlLikeClause(text: string) {
   return text.replace(/%/g, "\\\\%").replace(/\s/g, "%");
 }
+
+export function isUrl(text?: string) {
+  if(!text) return false;
+  try {
+    new URL(text);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

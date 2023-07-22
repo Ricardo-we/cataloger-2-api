@@ -9,7 +9,7 @@ export const appConfig = {
   },
   API_URL: "http://localhost:8000",
   // HIDE APP BAR AND DRAWER
-  NAVBAR_HIDDED_ROUTES: ["/login"],
+  NAVBAR_HIDDED_ROUTES: [] as string[],
   FALLBACK_LANGUAGE: "es",
   // NAVBAR VISIBLE ROUTES
 };
